@@ -1,0 +1,20 @@
+# Node or frontend stuff
+node_modules/
+dist/
+build/
+
+# AWS credentials or sensitive files
+.env
+
+# macOS system files
+.DS_Store
+
+# Terraform
+*.tfstate
+*.tfstate.backup
+.terraform/
+
+# Logs or temp files
+*.log
+*.zip
+*.bak
