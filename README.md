@@ -119,15 +119,6 @@ aws cloudfront create-invalidation \
   --paths "/*"
 ```
 
----
-
-## Live Demo
-
-[View Live Site](https://your-cloudfront-id.cloudfront.net)
-*(Replace with your actual distribution URL or custom domain)*
-
----
-
 ## Author
 
 **Your Name**
