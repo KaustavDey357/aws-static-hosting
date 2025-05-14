@@ -97,9 +97,11 @@ terraform apply
 ## Screenshots
 
 #The S3 Bucket
+
 ![S3 Upload](./screenshots/s3-upload.png)
 
 #CloudFront Configuration
+
 ![CloudFront Config](./screenshots/cloudfront-setup-config.png)
 
 #The CloudFront Deployed Static Website
