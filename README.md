@@ -126,8 +126,8 @@ aws cloudfront create-invalidation \
 
 **Your Name**
 
-* GitHub: [@yourusername](https://github.com/yourusername)
-* LinkedIn: [linkedin.com/in/yourusername](https://linkedin.com/in/yourusername)
-* Portfolio: [yourusername.github.io](https://yourusername.github.io)
+* GitHub: [@yourusername](https://github.com/KaustavDey357)
+* LinkedIn: [linkedin.com/in/KaustavDey357](https://linkedin.com/in/KaustavDey357)
+* Portfolio: [KaustavDey357.github.io](https://KaustavDey357.github.io)
 
 ---
