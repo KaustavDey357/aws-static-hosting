@@ -131,19 +131,3 @@ aws cloudfront create-invalidation \
 * Portfolio: [yourusername.github.io](https://yourusername.github.io)
 
 ---
-
-## License
-
-MIT – free to use and modify
-
-```
-
----
-
-Let me know if you want:
-- A **matching architecture diagram**
-- Terraform templates for S3 + CloudFront
-- A **clean starter repo** to clone
-
-I can generate those too.
-```
