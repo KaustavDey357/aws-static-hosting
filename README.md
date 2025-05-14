@@ -4,30 +4,26 @@
 ## Overview  
 This project demonstrates how to host a static frontend website using **Amazon S3** for storage and **CloudFront** as the global content delivery network (CDN). The website includes HTTPS support, versioned deployments, and optional custom domain configuration.
 
-This is a perfect deployment setup for frontend applications like React, Vue, or static HTML/CSS sites.
-
 ---
 
 ## Tech Stack  
 - **AWS S3** – Object storage to host static website files  
 - **AWS CloudFront** – CDN to cache and serve content globally with HTTPS  
 - **AWS Route 53** *(optional)* – For custom domain + SSL  
-- **Terraform** *(optional)* – For automated infrastructure  
-- **GitHub** – Code and version control
+- **Terraform** *(optional)* – For infrastructure automation  
+- **GitHub** – Version control
 
 ---
 
 ## Architecture Diagram
 
-![Architecture](./s3-cloudfront-diagram.png)
-
-1. Static files are uploaded to **S3** with public read or OAI policy  
-2. **CloudFront** serves content via edge locations (HTTPS + cache)  
-3. *(Optional)* Route 53 links your domain to CloudFront with SSL
+![Architecture](./screenshots/s3-cloudfront-diagram.png)
 
 ---
 
 ## Project Structure
+
+```
 
 project-root/
 ├── site/ # Your static files (HTML, CSS, JS)
@@ -36,6 +32,7 @@ project-root/
 ├── .gitignore
 └── README.md
 
+````
 
 ---
 
@@ -45,12 +42,12 @@ project-root/
 
 1. **Create S3 Bucket**  
    - Name: `your-site-name`  
-   - Disable Block All Public Access  
+   - Uncheck “Block All Public Access”  
    - Enable Static Website Hosting  
    - Note the endpoint URL
 
 2. **Upload Files**  
-   - Go to "Objects" → "Upload" your `index.html`, `style.css`, etc.
+   - Go to “Objects” → “Upload” your `index.html`, CSS, JS files
 
 3. **Set Bucket Policy**
    ```json
@@ -66,59 +63,87 @@ project-root/
        }
      ]
    }
-Create CloudFront Distribution
+````
 
-Origin Domain: your S3 bucket website endpoint
+4. **Create CloudFront Distribution**
 
-Enable caching, set default root object as index.html
+   * Origin Domain: S3 static site endpoint (e.g., `your-site-name.s3-website-us-east-1.amazonaws.com`)
+   * Set default root object: `index.html`
+   * Optional: Add custom domain + SSL (from ACM)
 
-Optional: Add custom domain + SSL certificate (ACM)
+---
 
-Option 2: Deploy Using Terraform (Optional)
-You can automate all of the above using Terraform.
+### Option 2: Deploy Using Terraform (Optional)
 
+> Automate everything using Infrastructure as Code
+
+```bash
 cd terraform/
 terraform init
 terraform apply
-This will:
+```
 
-Create S3 bucket with correct settings
+---
 
-Upload static site files
+## Custom Domain with HTTPS (Optional)
 
-Set CloudFront as CDN
+1. Buy/manage domain in Route 53
+2. Issue SSL Certificate via ACM (in `us-east-1`)
+3. Link domain + SSL to CloudFront
+4. Add DNS A/AAAA records in Route 53
 
-(Optional) Configure Route 53 for custom domain
+---
 
-Custom Domain with HTTPS (Optional)
-Buy Domain via Route 53 or use existing
+## Screenshots
 
-Request SSL cert in AWS Certificate Manager
+![S3 Upload](./screenshots/s3-upload.png)
+![CloudFront Config](./screenshots/cloudfront-setup.png)
 
-Attach domain + SSL to CloudFront
+---
 
-Create A/AAAA records in Route 53 pointing to CloudFront
+## Useful AWS CLI Commands
 
-Screenshots
-S3 Hosting Screenshot
-CloudFront Setup
-
-Live Demo
-View Live Site
-
-Useful Commands (CLI)
-# Upload site manually
+```bash
+# Upload static site files to S3
 aws s3 sync ./site s3://your-bucket-name --acl public-read
 
-# Invalidate CloudFront cache (after deploy)
+# Invalidate CloudFront cache
 aws cloudfront create-invalidation \
-  --distribution-id YOUR_ID \
+  --distribution-id YOUR_DISTRIBUTION_ID \
   --paths "/*"
-Author
-Your Name
+```
 
-GitHub: @deykaustav357
+---
 
-LinkedIn: linkedin.com/in/deykaustav357
+## Live Demo
 
-Portfolio: deykaustav357.github.io
+[View Live Site](https://your-cloudfront-id.cloudfront.net)
+*(Replace with your actual distribution URL or custom domain)*
+
+---
+
+## Author
+
+**Your Name**
+
+* GitHub: [@yourusername](https://github.com/yourusername)
+* LinkedIn: [linkedin.com/in/yourusername](https://linkedin.com/in/yourusername)
+* Portfolio: [yourusername.github.io](https://yourusername.github.io)
+
+---
+
+## License
+
+MIT – free to use and modify
+
+```
+
+---
+
+Let me know if you want:
+- A **matching architecture diagram**
+- Terraform templates for S3 + CloudFront
+- A **clean starter repo** to clone
+
+I can generate those too.
+```
